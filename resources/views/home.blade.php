@@ -6,19 +6,19 @@
 
 
 <div id="layoutSidenav">
-    <div id="layoutSidenav_content">
-        <main>
-            <div class="container-fluid px-4 mt-3">
+  <div id="layoutSidenav_content">
+    <main>
+      <div class="container-fluid px-4 mt-3">
 
-                <ol class="breadcrumb mb-4">
-                    <li class="breadcrumb-item active">
-                        <h2>DASHBOARD</h2>
-                    </li>
-                </ol>
-                <div class="row">
-                    <div class="col-9">
+        <ol class="breadcrumb mb-4">
+          <li class="breadcrumb-item active">
+            <h2>DASHBOARD</h2>
+          </li>
+        </ol>
+        <div class="row">
+          <div class="col-9">
 
-                         <!-- grafik 1 & 2 -->
+            <!-- grafik 1 & 2 -->
             <div class="row mb-3">
               <div class="col">
                 <div id="card-chart-wilayah" class="card-chart ms-1 " style=" width: 25rem;">
@@ -42,226 +42,202 @@
                 </div>
               </div>
             </div>
-                        <ol class="breadcrumb mt-3 mb-4">
-                            <li class="breadcrumb-item active">
-                                <h4>Rangking Pegawai Terbaik</h4>
-                            </li>
-                        </ol>
-                        <div class="row mt-3">
-                            <div class="col-6">
-                                <a type="button" class="btn btn-primary mb-1" href="{{ url('lap_per_pegawai?caritahun=kosong&caribulan=0&carinip=kosong&limit=1') }}"
-                                    style="float:right;">View
-                                    All</a>
-                                <table class="table table-striped table-hover rounded  mt-1">
-                                    <thead class="backgroud-thead">
-                                        <tr>
-                                            <td><b>#</b></td>
-                                            <td><b>Nip</b></td>
-                                            <td><b>Nama</b></td>
-                                            <td><b>Upt</b></td>
-                                            <td><b>Total</b></td>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        @foreach($pegawai as $data_get)
+            <ol class="breadcrumb mt-3 mb-4">
+              <li class="breadcrumb-item active">
+                <h4>Rangking Pegawai Terbaik</h4>
+              </li>
+            </ol>
+            <div class="row mt-3">
+              <div class="col-6">
+                <a type="button" class="btn btn-success mb-1" href="{{ url('lap_per_pegawai?caritahun=kosong&caribulan=0&carinip=kosong&limit=1') }}" style="float:right;">View
+                  All</a>
+                <table class="table table-striped table-hover rounded  mt-1">
+                  <thead class="backgroud-thead">
+                    <tr>
+                      <td><b>#</b></td>
+                      <td><b>Nip</b></td>
+                      <td><b>Nama</b></td>
+                      <td><b>Upt</b></td>
+                      <td><b>Total</b></td>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    @foreach($pegawai as $data_get)
 
-                                        <tr>
-                                            <td>
-                                                @php $no = 1; @endphp
-                                                {{ $loop->index+1 }}
-                                            </td>
-                                            <td>
-                                                {{ $data_get->nip }}
+                    <tr>
+                      <td>
+                        @php $no = 1; @endphp
+                        {{ $loop->index+1 }}
+                      </td>
+                      <td>
+                        {{ $data_get->nip }}
 
-                                            </td>
-                                            <td>
-                                                {{ $data_get->nama }}
+                      </td>
+                      <td>
+                        {{ $data_get->nama }}
 
-                                            </td>
-                                            <td>
-                                                {{ $data_get->upt }}
+                      </td>
+                      <td>
+                        {{ $data_get->upt }}
 
-                                            </td>
-                                            <td>
-                                                {{ $data_get->total }}
-                                                @if( $data_get->total >= 300)
-                                                <img src="{{url('img/senyum.png')}}" style="width:25px" alt="">
-                                                @elseif( $data_get->total >= 200 and $data_get->total <= 300) 
-                                                <img src="{{url('img/sedang.png')}}" style="width:25px" alt="">
-                                                    @elseif( $data_get->total <= 200 ) 
-                                                    <img src="{{url('img/kecewa.png')}}" style="width:25px" alt="">
-                                                        @endif
-                                            </td>
-                                            @endforeach
-                                        </tr>
-                                    </tbody>
-                                </table>
+                      </td>
+                      <td>
+                        {{ $data_get->total }}
+                        @if( $data_get->total >= 300)
+                        <img src="{{url('img/senyum.png')}}" style="width:25px" alt="">
+                        @elseif( $data_get->total >= 200 and $data_get->total <= 300) <img src="{{url('img/sedang.png')}}" style="width:25px" alt="">
+                          @elseif( $data_get->total <= 200 ) <img src="{{url('img/kecewa.png')}}" style="width:25px" alt="">
+                            @endif
+                      </td>
+                      @endforeach
+                    </tr>
+                  </tbody>
+                </table>
 
-                            </div>
-                            <div class="col-6">
-                                <a type="button" class="btn btn-primary mb-1" href="{{ url('lap_per_pegawai') }}"
-                                    style="float:right;">View
-                                    All</a>
-                                <table class="table table-striped table-hover rounded  mt-1">
-                                    <thead class="backgroud-thead">
-                                        <tr>
-                                            <td><b>#</b></td>
-                                            <td><b>Nip</b></td>
-                                            <td><b>Nama</b></td>
-                                            <td><b>Upt</b></td>
-                                            <td><b>Total</b></td>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        @foreach($pegawai as $data_get)
+              </div>
+              <div class="col-6">
+                <a type="button" class="btn btn-success mb-1" href="{{ url('lap_per_pegawai') }}" style="float:right;">View
+                  All</a>
+                <table class="table table-striped table-hover rounded  mt-1">
+                  <thead class="backgroud-thead">
+                    <tr>
+                      <td><b>#</b></td>
+                      <td><b>Nip</b></td>
+                      <td><b>Nama</b></td>
+                      <td><b>Upt</b></td>
+                      <td><b>Total</b></td>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    @foreach($pegawai as $data_get)
 
-                                        <tr>
-                                            <td>
-                                                @php $no = 1; @endphp
-                                                {{ $loop->index+1 }}
-                                            </td>
-                                            <td>
-                                                {{ $data_get->nip }}
+                    <tr>
+                      <td>
+                        @php $no = 1; @endphp
+                        {{ $loop->index+1 }}
+                      </td>
+                      <td>
+                        {{ $data_get->nip }}
 
-                                            </td>
-                                            <td>
-                                                {{ $data_get->nama }}
+                      </td>
+                      <td>
+                        {{ $data_get->nama }}
 
-                                            </td>
-                                            <td>
-                                                {{ $data_get->upt }}
+                      </td>
+                      <td>
+                        {{ $data_get->upt }}
 
-                                            </td>
-                                            <td>
-                                                {{ $data_get->total }}
-                                                @if( $data_get->total >= 300)
-                                                <img src="{{url('img/senyum.png')}}" style="width:25px" alt="">
-                                                @elseif( $data_get->total >= 200 and $data_get->total <= 300) 
-                                                <img src="{{url('img/sedang.png')}}" style="width:25px" alt="">
-                                                    @elseif( $data_get->total <= 200 ) 
-                                                    <img src="{{url('img/kecewa.png')}}" style="width:25px" alt="">
-                                                        @endif
-                                            </td>
-                                            @endforeach
-                                        </tr>
-                                    </tbody>
-                                </table>
+                      </td>
+                      <td>
+                        {{ $data_get->total }}
+                        @if( $data_get->total >= 300)
+                        <img src="{{url('img/senyum.png')}}" style="width:25px" alt="">
+                        @elseif( $data_get->total >= 200 and $data_get->total <= 300) <img src="{{url('img/sedang.png')}}" style="width:25px" alt="">
+                          @elseif( $data_get->total <= 200 ) <img src="{{url('img/kecewa.png')}}" style="width:25px" alt="">
+                            @endif
+                      </td>
+                      @endforeach
+                    </tr>
+                  </tbody>
+                </table>
 
-                            </div>
-                        </div>
-
-
-
-
-
-                    </div>
-                    <div class="col-3 mt-5">
-                        <!-- <div class="row"> -->
-                        @foreach($data as $data_get)
-                        <!-- <div class="col-xl-3 col-md-6"> -->
-                        <div class="card bg-warning text-white mb-4">
-                            <div class="card-body"><i class="fa fa-user"></i> Pegawai Dinilai</div>
-                            <div class="card-footer d-flex align-items-center justify-content-between">
-                                <div class="small text-white">{{ $data_get->dinilai}}</div>
-                            </div>
-                        </div>
-                        <!-- </div> -->
-                        <!-- <div class="col-xl-3 col-md-6"> -->
-                        <div class="card bg-success text-white mb-4 ">
-                            <div class="card-body"><i class="bi bi-pie-chart-fill"></i> Rerata Total</div>
-                            <div class="card-footer d-flex align-items-center justify-content-between">
-                                <div class="small text-white">{{$data_get->total}}</div>
-                            </div>
-                        </div>
-                        <!-- </div> -->
-                        <!-- <div class="col-xl-3 col-md-6"> -->
-                        <div class="card bg-secondary text-white mb-4">
-                            <div class="card-body align-text-center"><i class="bi bi-arrow-return-right"></i> Perceived
-                                Ease of Use</div>
-                            <div class="card-footer d-flex align-items-center justify-content-between">
-                                <div class="small text-white">{{$data_get->sub1}}</div>
-                            </div>
-                        </div>
-                        <!-- </div> -->
-
-                        <!-- <div class="col-xl-3 col-md-6"> -->
-                        <div class="card bg-primary text-white mb-4">
-                            <div class="card-body align-text-center"><i class="bi bi-arrow-return-right"></i> Perceived
-                                Usefulness</div>
-                            <div class="card-footer d-flex align-items-center justify-content-between">
-                                <div class="small text-white">{{$data_get->sub2}}</div>
-
-                            </div>
-                        </div>
-                        <!-- </div> -->
-
-                        <!-- <div class="col-xl-3 col-md-6"> -->
-                        <div class="card text-white mb-4" style="background-color:#8b1eba">
-                            <div class="card-body align-text-center"><i class="bi bi-arrow-return-right"></i> Perceived
-                                Satisfaction</div>
-                            <div class="card-footer d-flex align-items-center justify-content-between">
-                                <div class="small text-white">{{$data_get->sub3}}</div>
-
-                            </div>
-                        </div>
-                        <!-- </div> -->
-                        <!-- <div class="col-xl-3 col-md-6"> -->
-                        <div class="card text-white mb-4" style="background-color:#ba1e5f">
-                            <div class="card-body align-text-center"><i class="bi bi-arrow-return-right"></i> Actual
-                                Useas</div>
-                            <div class="card-footer d-flex align-items-center justify-content-between">
-                                <div class="small text-white">{{$data_get->sub4}}</div>
-
-                            </div>
-                        </div>
-                        <!-- </div> -->
-                        <!-- <div class="col-xl-3 col-md-6"> -->
-                        <div class="card bg-warning text-white mb-4" style="background-color:#ba1e5f">
-                            <div class="card-body align-text-center"><i class="bi bi-arrow-return-right"></i>
-                                Performance Impact <br> (Problem identification speed)</div>
-                            <div class="card-footer d-flex align-items-center justify-content-between">
-                                <div class="small text-white">{{$data_get->sub5}}</div>
-
-                            </div>
-                        </div>
-                        <!-- </div> -->
-                        <!-- <div class="col-xl-3 col-md-6"> -->
-                        <div class="card bg-success text-white mb-4">
-                            <div class="card-body align-text-center"><i class="bi bi-arrow-return-right"></i>
-                                (Decision-making speed)</div>
-                            <div class="card-footer d-flex align-items-center justify-content-between">
-                                <div class="small text-white">{{$data_get->sub6}}</div>
-
-                            </div>
-                        </div>
-                        <!-- </div> -->
-
-
-                        <!-- <div class="col-xl-3 col-md-6"> -->
-                        <div class="card bg-secondary text-white mb-4">
-                            <div class="card-body align-text-center"><i class="bi bi-arrow-return-right"></i> (Extent of
-                                analysis in decision-making)</div>
-                            <div class="card-footer d-flex align-items-center justify-content-between">
-                                <div class="small text-white">{{$data_get->sub7}}</div>
-
-                            </div>
-                        </div>
-                        <!-- </div> -->
-
-                        @endforeach
-                        <!-- </div> -->
-                    </div>
-
-
-                </div>
-
+              </div>
             </div>
 
-            <div class="row">
 
+
+
+
+          </div>
+          <div class="col-3 mt-5">
+            <!-- <div class="row"> -->
+            @foreach($data as $data_get)
+            <!-- <div class="col-xl-3 col-md-6"> -->
+            <div class="card bg-warning text-white mb-4">
+              <div class="card-body"><i class="fa fa-user"></i> Pegawai Dinilai</div>
+              <div class="card-footer d-flex align-items-center justify-content-between">
+                <div class="small text-white">{{ $data_get->dinilai}}</div>
+              </div>
             </div>
-    </div>
-    </main>
+            <!-- </div> -->
+            <!-- <div class="col-xl-3 col-md-6"> -->
+            <div class="card bg-success text-white mb-4 ">
+              <div class="card-body"><i class="bi bi-pie-chart-fill"></i> Rerata Total</div>
+              <div class="card-footer d-flex align-items-center justify-content-between">
+                <div class="small text-white">{{$data_get->total}}</div>
+              </div>
+            </div>
+            <!-- </div> -->
+            <!-- <div class="col-xl-3 col-md-6"> -->
+            <div class="card bg-secondary text-white mb-4">
+              <div class="card-body align-text-center"><i class="bi bi-arrow-return-right"></i> Proactive Personality  </div>
+              <div class="card-footer d-flex align-items-center justify-content-between">
+                <div class="small text-white">{{$data_get->sub1}}</div>
+              </div>
+            </div>
+            <!-- </div> -->
+
+            <!-- <div class="col-xl-3 col-md-6"> -->
+            <div class="card bg-primary text-white mb-4">
+              <div class="card-body align-text-center"><i class="bi bi-arrow-return-right"></i> Supportive Supervision </div>
+              <div class="card-footer d-flex align-items-center justify-content-between">
+                <div class="small text-white">{{$data_get->sub2}}</div>
+
+              </div>
+            </div>
+            <!-- </div> -->
+
+            <!-- <div class="col-xl-3 col-md-6"> -->
+            <div class="card text-white mb-4" style="background-color:#8b1eba">
+              <div class="card-body align-text-center"><i class="bi bi-arrow-return-right"></i>Role Breadth Self-Efficacy </div>
+              <div class="card-footer d-flex align-items-center justify-content-between">
+                <div class="small text-white">{{$data_get->sub3}}</div>
+
+              </div>
+            </div>
+            <!-- </div> -->
+            <!-- <div class="col-xl-3 col-md-6"> -->
+            <div class="card text-white mb-4" style="background-color:#ba1e5f">
+              <div class="card-body align-text-center"><i class="bi bi-arrow-return-right"></i> Change Orientation </div>
+              <div class="card-footer d-flex align-items-center justify-content-between">
+                <div class="small text-white">{{$data_get->sub4}}</div>
+
+              </div>
+            </div>
+            <!-- </div> -->
+            <!-- <div class="col-xl-3 col-md-6"> -->
+            <div class="card bg-warning text-white mb-4" style="background-color:#ba1e5f">
+              <div class="card-body align-text-center"><i class="bi bi-arrow-return-right"></i>
+              Proactive Work Behaviour </div>
+              <div class="card-footer d-flex align-items-center justify-content-between">
+                <div class="small text-white">{{$data_get->sub5}}</div>
+
+              </div>
+            </div>
+
+           
+            <!-- </div> -->
+            <!-- <div class="col-xl-3 col-md-6"> -->
+            <!-- </div> -->
+
+
+            <!-- <div class="col-xl-3 col-md-6"> -->
+            <!-- </div> -->
+
+            @endforeach
+            <!-- </div> -->
+          </div>
+
+
+        </div>
+
+      </div>
+
+      <div class="row">
+
+      </div>
+  </div>
+  </main>
 </div>
 </div>
 
@@ -294,7 +270,8 @@
           format: '<b>{point.name}</b>: {point.percentage:.1f} %'
         }
       }
-    },credits: {
+    },
+    credits: {
       enabled: false
     },
     series: {!!$str_gender!!}

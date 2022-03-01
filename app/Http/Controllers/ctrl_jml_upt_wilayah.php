@@ -12,7 +12,7 @@ class ctrl_jml_upt_wilayah extends Controller
     public function pilih_wilayah(Request $request){
         // dd($request->all());
         $cari = array($request->caritahun, $request->caribulan, $request->cariwilayah, $request->cariupt,($request->limit-1)*10);
-        $dtupt=DB::select('CALL upt_tampil()'); 
+        $dtupt=DB::select('CALL upt_tampill()'); 
         $datawil=DB::select('call wilayah_tampil()'); 
 
         if(empty($request->caritahun) && empty($request->caribulan) && empty($request->cariwilayah) && empty($request->cariupt)){

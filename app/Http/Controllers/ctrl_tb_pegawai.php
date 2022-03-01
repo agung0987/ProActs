@@ -13,40 +13,54 @@ class ctrl_tb_pegawai extends Controller
     {
         $this->middleware('auth');
     }
-    public function index()
+
+
+    public function autocomplete(Request $request)
     {
 
-        $dtpg=mdl_pegawai::all();
-        $data=DB::select('CALL pegawai_tampil()');
-        $datajab=DB::select('CALL jabatan_tampil()');
-        $dataupt=DB::select('CALL upt_tampil2()');
-        $datawil=DB::select('CALL wilayah_tampil()');
-        $dataatasan=DB::select('CALL atasan_tampil()');
+        if ($request->has('q')) {
+            $search = $request->q;
+            $data = DB::select('call pegawai_tampil(?)', [$search]);
+        }
+        return response()->json($data);
+    }
+
+    public function index(Request $request)
+    {
+        $cari = array($request->nama);
+        if (empty($request->nama)) {
+            $data = DB::select('CALL pegawai_tampil(?)', ['kosong']);
+        } else {
+            $data = DB::select('CALL pegawai_tampil(?)', $cari);
+        };
+        $dtpg = mdl_pegawai::all();
+        $datajab = DB::select('CALL jabatan_tampil()');
+        $dataupt = DB::select('CALL upt_tampil2()');
+        $datawil = DB::select('CALL wilayah_tampil()');
+        $dataatasan = DB::select('CALL atasan_tampil()');
         // dd($dtpg);
-        $dtpegawai=array(
-            'dtpg'=>$dtpg,
-            'data'=>$data,
-            'datajab'=>$datajab,
-            'dataupt'=>$dataupt,
-            'datawil'=> $datawil,
-            'dataatasan'=> $dataatasan
+        $dtpegawai = array(
+            'dtpg' => $dtpg,
+            'data' => $data,
+            'datajab' => $datajab,
+            'dataupt' => $dataupt,
+            'datawil' => $datawil,
+            'dataatasan' => $dataatasan
         );
-        return view("pegawai-tampil",$dtpegawai);
+        return view("pegawai-tampil", $dtpegawai);
     }
 
     public function get_tambah()
     {
-        $data=DB::select('CALL pegawai_tampil()');
-        $datajab=DB::select('CALL jabatan_tampil()');
-        $dataupt=DB::select('CALL upt_tampil2()');
-        $datawil=DB::select('CALL wilayah_tampil()');
-        $dataatasan=DB::select('CALL atasan_tampil()');
-        return view("pegawai-tambah",[
-            'data'=>$data,
-            'datajab'=>$datajab,
-            'dataupt'=>$dataupt,
-            'datawil'=> $datawil,
-            'dataatasan'=> $dataatasan
+        $datajab = DB::select('CALL jabatan_tampil()');
+        $dataupt = DB::select('CALL upt_tampil2()');
+        $datawil = DB::select('CALL wilayah_tampil()');
+        $dataatasan = DB::select('CALL atasan_tampil()');
+        return view("pegawai-tambah", [
+            'datajab' => $datajab,
+            'dataupt' => $dataupt,
+            'datawil' => $datawil,
+            'dataatasan' => $dataatasan
         ]);
     }
 

@@ -51,7 +51,7 @@
         <td><label class="form-check-label" for="defaultCheck8"> Data User </label></td>
     </tr>
 <tr style="float:left; width: 100%; height:40px; ">
-<td><button type="submit" class="btn btn-primary coba">Export</button></td>
+<td><button type="submit" class="btn btn-success coba">Export</button></td>
 </tr>
 </table>
 </form>

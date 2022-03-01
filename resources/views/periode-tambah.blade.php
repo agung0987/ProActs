@@ -9,7 +9,7 @@
         <div class="container">
             <div class="d-flex justify-content-center">
                 <div class="card mt-2" style="width: 700px; padding:3rem; ">
-                    <ol class="breadcrumb mb-4 justify-content-center bg-primary">
+                    <ol class="breadcrumb mb-4 justify-content-center bg-success">
                         <li class="breadcrumb-item active" style="color: white;">
                             <h2>Tambah Data Periode Peniaian</h2>
                         </li>
@@ -55,7 +55,7 @@
                          </select></td>
                     </tr>
                     <tr style="height: 50px;">
-                    <td><button type="submit" class="btn btn-primary" id="tambah-periode">Simpan</button></td>
+                    <td><button type="submit" class="btn btn-success" id="tambah-periode">Simpan</button></td>
                     </tr>
                 </form>
 </table>

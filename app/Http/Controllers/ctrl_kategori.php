@@ -10,19 +10,33 @@ use App\Models\model_kategori;
 class ctrl_kategori extends Controller
 {
 
+    public function autocomplete(Request $request)
+    {
+
+        if ($request->has('q')) {
+            $search = $request->q;
+            $data = DB::select('call kategori_search(?)', [$search]);
+        }
+        return response()->json($data);
+    }
+
 
     public function __construct()
     {
         $this->middleware('auth');
     }
     
-    public function cobacrud()
+    public function cobacrud(Request $request)
     {
-        $cobacrud = model_kategori::all();
-        // $cobacrud = DB::raw("SELECT * FROM `cobacrud` WHERE 1");
+        $cari = array($request->nama);
+        if (empty($request->nama)) {
+            $data = DB::select('CALL kategori_search(?)', ['kosong']);
+        } else {
+            $data = DB::select('CALL kategori_search(?)', $cari);
+        };
 
         return view("kategori-tampil", [
-            "data" => $cobacrud,
+            "data" => $data
         ]);
     }
 

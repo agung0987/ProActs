@@ -21,7 +21,7 @@
           <tr >
             <td class="judul"><b>Data Pegawai </b></td>
             <td>
-                <button type="button" class="btn btn-primary mr-5" data-toggle="modal" data-target="#importExcel">
+                <button type="button" class="btn btn-success mr-5" data-toggle="modal" data-target="#importExcel">
 			        IMPORT
 		        </button> 
             </td>
@@ -29,7 +29,7 @@
           <tr>
             <td class="judul"><b> Data Jabatan </b></td>
             <td>
-                <button type="button" class="btn btn-primary mr-5" data-toggle="modal" data-target="#Jabatan">
+                <button type="button" class="btn btn-success mr-5" data-toggle="modal" data-target="#Jabatan">
 			        IMPORT
 		        </button>
             </td>
@@ -37,7 +37,7 @@
           <tr>
             <td class="judul"><b> Data Wilayah </b></td>
             <td>
-                <button type="button" class="btn btn-primary mr-5" data-toggle="modal" data-target="#Wilayah">
+                <button type="button" class="btn btn-success mr-5" data-toggle="modal" data-target="#Wilayah">
 			        IMPORT
 		        </button>
             </td>
@@ -45,7 +45,7 @@
           <tr>
             <td class="judul"><b> Data Upt </b></td>
             <td>
-                <button type="button" class="btn btn-primary mr-5" data-toggle="modal" data-target="#upt">
+                <button type="button" class="btn btn-success mr-5" data-toggle="modal" data-target="#upt">
 			        IMPORT
 		        </button>
             </td>
@@ -53,7 +53,7 @@
           <tr>
             <td class="judul"><b> Data Kategori </b></td>
             <td>
-                <button type="button" class="btn btn-primary mr-5" data-toggle="modal" data-target="#kategori">
+                <button type="button" class="btn btn-success mr-5" data-toggle="modal" data-target="#kategori">
 			        IMPORT
 		        </button>
             </td>
@@ -61,7 +61,7 @@
 		  <tr>
             <td class="judul"><b> Data Kuesioner </b></td>
             <td>
-                <button type="button" class="btn btn-primary mr-5" data-toggle="modal" data-target="#kuesioner">
+                <button type="button" class="btn btn-success mr-5" data-toggle="modal" data-target="#kuesioner">
 			        IMPORT
 		        </button>
             </td>
@@ -69,7 +69,7 @@
 		  <tr>
             <td class="judul"><b> Data Periode Penilaian </b></td>
             <td>
-                <button type="button" class="btn btn-primary mr-5" data-toggle="modal" data-target="#periode">
+                <button type="button" class="btn btn-success mr-5" data-toggle="modal" data-target="#periode">
 			        IMPORT
 		        </button>
             </td>
@@ -77,7 +77,7 @@
 		  <tr>
             <td class="judul"><b> Data User </b></td>
             <td>
-                <button type="button" class="btn btn-primary mr-5" data-toggle="modal" data-target="#user">
+                <button type="button" class="btn btn-success mr-5" data-toggle="modal" data-target="#user">
 			        IMPORT
 		        </button>
             </td>
@@ -109,7 +109,7 @@
 						</div>
 						<div class="modal-footer">
 							<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-							<button type="submit" class="btn btn-primary">Import</button>
+							<button type="submit" class="btn btn-success">Import</button>
 						</div>
 					</div>
         </form>

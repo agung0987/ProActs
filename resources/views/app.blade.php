@@ -26,7 +26,7 @@
 <body>
     <div id="app">
         <!-- Navigation-->
-        <nav class="navbar navbar-expand-lg navbar-dark fixed-top" style="background-color: #4E73DF;" id="mainNav">
+        <nav class="navbar navbar-expand-lg navbar-dark fixed-top" style="background-color: #21b500;" id="mainNav">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}"><img src="{{asset('img/log.png')}}" style="width: 3rem; height:2.5rem;"> KEMENKUMHAM</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">

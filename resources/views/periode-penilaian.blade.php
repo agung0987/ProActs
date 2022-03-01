@@ -18,7 +18,7 @@
               <h2><b>Data Periode Penilaian</b></h2>
             </div>
             <div style="float:left; width: 30%; height:50px; ">
-              <a href="/periode/tambah" class="btn btn-secondary"><i class="bi bi-file-earmark-plus"></i> <span style="padding-top: 4px;">Tambah Periode Penilaian</span></a>
+              <a href="/periode/tambah" class="btn btn-success"><i class="bi bi-file-earmark-plus"></i> <span style="padding-top: 4px;">Tambah Periode Penilaian</span></a>
             </div>
           </div>
           </div>
@@ -146,9 +146,6 @@
           </tr>
         </table>
       </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-      </div>
     </div>
   </div>
 </div>
@@ -217,7 +214,7 @@
         </div>
         <div class="modal-footer">
      <!-- <a class="btn btn-secondary update" href="#" data-id="{{$data_get->id}}">Edit</a> -->
-          <button type="submit" class="btn btn-primary " id="edit-periode<?php echo $data_get->id; ?>">Simpan</button>
+          <button type="submit" class="btn btn-success " id="edit-periode<?php echo $data_get->id; ?>">Simpan</button>
       
         </div>
         </div>

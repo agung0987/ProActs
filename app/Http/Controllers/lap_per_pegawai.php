@@ -41,7 +41,6 @@ class lap_per_pegawai extends Controller
         'datas' => intval($bagi),
         'limit'=> $limit,
         'cari' => $cari,
-         
         'query'=>$query
     ]);
    }

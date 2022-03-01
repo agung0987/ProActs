@@ -8,28 +8,34 @@
   });
 </script>
 
-
-<div id="layoutSidenav">
-  <div id="layoutSidenav_content">
-
-    <section class="bodytabel">
+<section class="bodytabel">
+  <div id="layoutSidenav">
+    <div id="layoutSidenav_content">
       <div class="container-sm">
         <div class="table-responsive">
-          <div class="table-wrapper">
-            <div class="table-title">
+          <table>
+            <h2 class="judul pt-2"><b>Data kategori</b></h2>
+            <form action="/kategori">
               <div class="row">
-                <div class="col-sm-5 judul">
-                  <h2> <b>Data kategori</b></h2>
+                <div class="col-md-1">
+                  <label class="judul" for="cars2"><b>Nama</b></label>
                 </div>
-                <!-- <div class="col-sm-7">
+                <div class="col-md-4">
+                  <div class="input-group input-group-sm mb-3">
+                    <select class="name form-control" style="width: 300%;" name="nama"></select>
+                  </div>
+                </div>
+              </div>
+              <td><button type="submit" class="btn blue btn-success float-left">Cari</button></td>
+            </form>
+          </table>
+          <!-- <div class="col-sm-7">
               <a href="#" class="btn btn-secondary"><i class="bi bi-file-earmark-plus"></i> <span style="padding-top: 4px;">Add New User</span></a>
               <a href="#" class="btn btn-secondary"><i class="bi bi-file-pdf-fill"></i><span style="padding-top: 4px;">Export to Excel</span></a>
             </div> -->
-                <div class="col-sm-12">
-                  <a href="/view/kategori-tambah" class="btn btn-secondary"><i class="bi bi-file-earmark-plus"></i> <span style="padding-top: 4px;">Tambah Kategori</span></a>
-                </div>
-              </div>
-            </div>
+          
+            <a href="/view/kategori-tambah" class="btn btn-success mb-2" style="float: right;"><i class="bi bi-file-earmark-plus"></i> <span style="padding-top: 4px;">Tambah Kategori</span></a>
+          
             <table class="table table-striped table-hover rounded">
               <thead class="backgroud-thead">
                 <tr>
@@ -40,38 +46,40 @@
               </thead>
               <tbody>
                 @foreach($data as $data_get)
-
+      
                 <tr>
-                    <td>@php $no = 1; @endphp
-                      {{ $loop->index+1 }}
-                    </td>
-
-                    <td>
-                      {{$data_get->kategori}}
-                      <!-- <input type="text" name="kategori" value="{{$data_get->kategori}}"></input> -->
-                    </td>
-                    <td style="width: 3rem;">
-                      <div class="d-flex">
-                        <div class="dropdown me-1">
-                          <button type="button" class="btn btn-outline-primary dropdown-toggle  dropdown-toggle-split btn-sm" id="dropdownMenuOffset" data-bs-toggle="dropdown" aria-expanded="false" data-bs-offset="10,20">
-                            Aksi
-                          </button>
-                          <ul class="dropdown-menu " aria-labelledby="dropdownMenuOffset">
-                            <li><a class="btn btn-default btn-xs fs-6" type="button" class="btn btn-primary" data-bs-toggle="modal" href="" data-bs-target="#modaledit-{{$data_get->id}}"> Edit</a></li>
-                            <li><a class="btn btn-default btn-xs delete_kategori" data-id="{{$data_get->id}}" href="#">Hapus</a></li>
-                            <li><a class="btn btn-default btn-xs" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal-{{$data_get->id}}">Details</a></li>
-                          </ul>
-                        </div>
-
-                    </td>
+                  <td>@php $no = 1; @endphp
+                    {{ $loop->index+1 }}
+                  </td>
+      
+                  <td>
+                    {{$data_get->kategori}}
+                    <!-- <input type="text" name="kategori" value="{{$data_get->kategori}}"></input> -->
+                  </td>
+                  <td style="width: 3rem;">
+                    <div class="d-flex">
+                      <div class="dropdown me-1">
+                        <button type="button" class="btn btn-outline-primary dropdown-toggle  dropdown-toggle-split btn-sm" id="dropdownMenuOffset" data-bs-toggle="dropdown" aria-expanded="false" data-bs-offset="10,20">
+                          Aksi
+                        </button>
+                        <ul class="dropdown-menu " aria-labelledby="dropdownMenuOffset">
+                          <li><a class="btn btn-default btn-xs fs-6" type="button" class="btn btn-primary" data-bs-toggle="modal" href="" data-bs-target="#modaledit-{{$data_get->id}}"> Edit</a></li>
+                          <li><a class="btn btn-default btn-xs delete_kategori" data-id="{{$data_get->id}}" href="#">Hapus</a></li>
+                          <li><a class="btn btn-default btn-xs" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal-{{$data_get->id}}">Details</a></li>
+                        </ul>
+                      </div>
+      
+                  </td>
                 </tr>
-
+      
                 @endforeach
               </tbody>
             </table>
-            <div class="clearfix">
+        </div>
+      </div>
+      <div class="clearfix">
 
-              <!-- <div class="hint-text">Showing <b>5</b> out of <b>25</b> entries</div>
+        <!-- <div class="hint-text">Showing <b>5</b> out of <b>25</b> entries</div>
           <ul class="pagination">
             <li class="page-item disabled"><a href="#">Previous</a></li>
             <li class="page-item"><a href="#" class="page-link">1</a></li>
@@ -81,108 +89,130 @@
             <li class="page-item"><a href="#" class="page-link">5</a></li>
             <li class="page-item"><a href="#" class="page-link">Next</a></li>
           </ul> -->
-            </div>
-          </div>
-        </div>
       </div>
-    </section>
-    <!-- akhir template -->
+    </div>
+  </div>
+  </div>
+</section>
+<!-- akhir template -->
 
 
 
-    <!-- akhir template -->
-    @foreach($data as $data_get)
-    <div class="modal fade" id="exampleModal-{{$data_get->id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header  backgroud-thead">
-            <h5 class="modal-title" id="exampleModalLabel">Data Detail </h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <div class="modal-body">
-            <table class="table table-sm">
-              <tr>
-                <td><b>ID </b></td>
-                <td><span id="nip"></span>{{$data_get->id}}</td>
-              </tr>
-              <tr>
-                <td><b>Kategori </b></td>
-                <td><span id="nip"></span>{{$data_get->kategori}}</td>
-              </tr>
+<!-- akhir template -->
+@foreach($data as $data_get)
+<div class="modal fade" id="exampleModal-{{$data_get->id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header  backgroud-thead">
+        <h5 class="modal-title" id="exampleModalLabel">Data Detail </h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <table class="table table-sm">
+          <tr>
+            <td><b>ID </b></td>
+            <td><span id="nip"></span>{{$data_get->id}}</td>
+          </tr>
+          <tr>
+            <td><b>Kategori </b></td>
+            <td><span id="nip"></span>{{$data_get->kategori}}</td>
+          </tr>
 
-            </table>
-          </div>
-          <div class="modal-footer">
-            <!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> -->
-          </div>
+        </table>
+      </div>
+      <div class="modal-footer">
+        <!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> -->
+      </div>
+    </div>
+  </div>
+</div>
+@endforeach
+
+
+<!-- edit -->
+
+<!-- akhir template -->
+@foreach($data as $data_get)
+<div class="modal fade" id="modaledit-{{$data_get->id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <form id="myForm-edit-kategori<?php echo $data_get->id; ?>" action="{{ route('in.edit', ['id' => $data_get->id]) }}" method="POST">
+    @csrf
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header backgroud-thead">
+          <h5 class="modal-title" id="exampleModalLabel">Edit Kategori </h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <table class="table table-sm">
+
+            <tr>
+              <td><b>ID </b></td>
+              <td><input type="text" disabled class="form-control" name="id" value=" {{$data_get->id}}"> </td>
+            </tr>
+            <tr>
+              <td><b>Kategori </b></td>
+              <td><input type="text" class="form-control" name="kategori" value=" {{$data_get->kategori}}"> </td>
+            </tr>
+
+          </table>
+        </div>
+        <div class="modal-footer">
+          <button type="sumbit" class="btn btn-success" id="edit-kategori<?php echo $data_get->id; ?>">Simpan</button>
+          <!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> -->
         </div>
       </div>
     </div>
-    @endforeach
+  </form>
+</div>
 
-
-    <!-- edit -->
-
-    <!-- akhir template -->
-    @foreach($data as $data_get)
-    <div class="modal fade" id="modaledit-{{$data_get->id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-      <form id="myForm-edit-kategori<?php echo $data_get->id; ?>" action="{{ route('in.edit', ['id' => $data_get->id]) }}" method="POST">
-        @csrf
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header backgroud-thead">
-              <h5 class="modal-title" id="exampleModalLabel">Edit Kategori </h5>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-              <table class="table table-sm">
-
-                <tr>
-                  <td><b>ID </b></td>
-                  <td><input type="text"  disabled class="form-control" name="id" value=" {{$data_get->id}}"> </td>
-                </tr>
-                <tr>
-                  <td><b>Kategori </b></td>
-                  <td><input type="text"  class="form-control" name="kategori" value=" {{$data_get->kategori}}"> </td>
-                </tr>
-
-              </table>
-            </div>
-            <div class="modal-footer">
-              <button type="sumbit" class="btn btn-primary" id="edit-kategori<?php echo $data_get->id; ?>">Simpan</button>
-              <!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> -->
-            </div>
-          </div>
-        </div>
-      </form>
-    </div>
-
-    <!-- edit kategori  -->
+<!-- edit kategori  -->
 <script>
   $(document).on('click', '#edit-kategori<?php echo $data_get->id; ?>', function(e) {
     e.preventDefault();
-     Swal.fire({
-  title: 'Edit',
-  text: "Apakah Kamu Yakin Ingin mengedit Data Tersebut ?",
-  icon: 'warning',
-  showCancelButton: true,
-  confirmButtonColor: '#3085d6',
-  cancelButtonColor: '#d33',
-  confirmButtonText: 'Iya',
-  cancelButtonText: 'Tidak'
-}).then((result) => {
-  if (result.isConfirmed) {
-    $('#myForm-edit-kategori<?php echo $data_get->id; ?>').submit();
-  }
-});
-   });
+    Swal.fire({
+      title: 'Edit',
+      text: "Apakah Kamu Yakin Ingin mengedit Data Tersebut ?",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Iya',
+      cancelButtonText: 'Tidak'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        $('#myForm-edit-kategori<?php echo $data_get->id; ?>').submit();
+      }
+    });
+  });
 </script>
 <!-- akhir edit kategori  -->
 
-    @endforeach
-    <!-- akhir edit -->
+@endforeach
+<!-- akhir edit -->
 
-    <div>
-      <div>
+<div>
+  <div>
 
-        @endsection
+    <script type="text/javascript">
+      $('.name').select2({
+        placeholder: 'Pilih Nama',
+        ajax: {
+          url: '/autocomplete_kategori',
+          dataType: 'json',
+          delay: 250,
+          processResults: function(data) {
+            return {
+              results: $.map(data, function(item) {
+                return {
+                  id: item.kategori,
+                  text: item.kategori
+                }
+              })
+            };
+          },
+          cache: true
+        }
+      });
+    </script>
+
+    @endsection

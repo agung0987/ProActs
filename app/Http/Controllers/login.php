@@ -4,25 +4,34 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class login extends Controller
 {
-    public function halamanlogin(){
+    
+
+
+    public function halamanlogin()
+    {
         return view('login');
     }
-    public function postlogin(request $request){
-        if(Auth::attempt($request->only('email','password'))){
+    public function postlogin(request $request)
+    {
+        if (Auth::attempt($request->only('email', 'password'))) {
             return redirect('/datauser');
         }
         return redirect('/login');
     }
-    public function registrasi(){
+    public function registrasi()
+    {
         return view('login.registrasi');
     }
-    public function simpanregistrasi(request $request){
+    public function simpanregistrasi(request $request)
+    {
 
         User::create([
-            'name' => $request -> name,
-            'email']);
-        }
+            'name' => $request->name,
+            'email'
+        ]);
+    }
 }

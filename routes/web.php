@@ -21,12 +21,14 @@ Route::get('/', function () {
 });
 
 
+
 //Route::get('/users', [ctrl_kategori::cobacrud, 'in']);
 Route::get('/kategori', 'ctrl_kategori@cobacrud')->name('in');
 Route::get('/view/kategori-tambah', 'ctrl_kategori@VStore');
 Route::post('/kategori-tambah', 'ctrl_kategori@store')->name('in.tambah');
 Route::post('/kategori-edit/{id}', 'ctrl_kategori@edit')->name('in.edit');
 Route::get('/kategori-delete/{id}', 'ctrl_kategori@delete')->name('in.delete');
+Route::get('/autocomplete_kategori', 'ctrl_kategori@autocomplete')->name('autocompleteautocomplete_kategori');
 
 //kuesioner
 Route::get('/kuesioner', 'ctrl_kuesioner@cobacrud')->name('kuesioner');
@@ -34,6 +36,7 @@ Route::get('/view/kuesionertambah', 'ctrl_kuesioner@VStore');
 Route::post('/kuesionertambah', 'ctrl_kuesioner@store')->name('kuesioner.tambah');
 Route::post('/kuesioneredit/{id}', 'ctrl_kuesioner@edit')->name('kuesioner.edit');
 Route::get('/kuesionerdelete/{id}', 'ctrl_kuesioner@delete')->name('kuesioner.delete');
+Route::get('/autocomplete_kuesioner', 'ctrl_kuesioner@autocomplete')->name('autocompleteautocomplete_kuesioner');
 
 //periode nilai
 // Route::get('/periode', 'wilayahControler@index')->name('awal');
@@ -66,9 +69,9 @@ Route::get('/penilaian-proaktif/cetak', 'ctrlPenilaian@cetak_pdf');
 
 
 // periode2
-Route::get('/periodePenilaian-pilih', 'ctrlPenilaian@periode2') -> name ('id_periode');
-Route::get('/pegawai-pilih', 'ctrlPenilaian@pegawaiPilih')-> name ('pegawai-pilih');
-Route::get('/penilaian', 'ctrlPenilaian@penilaian')-> name ('penilaian');
+Route::get('/periodePenilaian-pilih', 'ctrlPenilaian@periode2')->name('id_periode');
+Route::get('/pegawai-pilih', 'ctrlPenilaian@pegawaiPilih')->name('pegawai-pilih');
+Route::get('/penilaian', 'ctrlPenilaian@penilaian')->name('penilaian');
 Route::get('/autocomplete', 'ctrlPenilaian@autocomplete')->name('autocomplete');
 Route::get('/penilaian', 'ctrlPenilaian@penilaian')->name('uplod');
 
@@ -83,6 +86,9 @@ Route::post('/chart/hapus/{id}', 'ctrlChart@delete')->name('chart.hapus');
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home-user', [App\Http\Controllers\HomeController::class, 'user'])->name('home2');
+Route::get('/check', 'HomeController@check')->name('check');
+
 
 
 
@@ -105,6 +111,8 @@ Route::post('/Add', 'ctrl_tb_pegawai@store')->name('tmbh_pegawai');
 Route::get('/tb-pegawai-detail/{id}', 'ctrl_tb_pegawai@pegawaidetail');
 Route::post('/edit', 'ctrl_tb_pegawai@edit')->name('dtpg_edit');
 Route::get('/del/{id}', 'ctrl_tb_pegawai@delete')->name('dtpg_del');
+Route::get('/autocomplete_pegawai', 'ctrl_tb_pegawai@autocomplete');
+
 
 
 
@@ -113,6 +121,7 @@ Route::get('/tb-jabatan', 'ctrl_jabatan@index')->name('dtjb');
 Route::post('/tb-jabatan/tambah', 'ctrl_jabatan@store')->name('dtjb-tambah');
 Route::get('/tb-jabatan/delete/{id}', 'ctrl_jabatan@delete')->name('dtjb-delete');
 Route::post('/tb-jabatan/edit/{id}', 'ctrl_jabatan@edit')->name('dtjb-edit');
+Route::get('/autocomplete_jabatan', 'ctrl_jabatan@autocomplete')->name('autocompleteautocomplete_jabatan');
 
 
 
@@ -126,27 +135,30 @@ Route::post('/tb-upt/tambah', 'ctrl_upt@store')->name('tb-upt-tambah');
 Route::post('/tb-upt/edit/{id}', 'ctrl_upt@update')->name('tb-upt-edit');
 Route::get('/tb-upt/delete/{id}', 'ctrl_upt@delete')->name('delete');
 Route::get('/tb-upt/cari', 'ctrl_upt@cari')->name('cari');
+Route::get('/autocomplete_upt', 'ctrl_upt@autocomplete');
+
 
 
 // user
 Route::get('/tb-user', 'ctrl_user@user_tampil')->name('tb-user');
 Route::post('/tb-user/edit{id}', 'ctrl_user@user_edit')->name('tb-user-edit');
 Route::get('/tb-user/delete/{id}', 'ctrl_user@delete')->name('tb-user-delete');
+Route::get('/autocomplete_user', 'ctrl_user@autocomplete')->name('autocompleteautocomplete_user');
 
 
 // periode
 // periodeNilaiControler
-Route::get('/periode', 'periodeNilaiControler@index') -> name ('periode-awal');
-Route::get('/periode/tambah','periodeNilaiControler@tambah') -> name('periode-tambah');
-Route::post('/periode/store', 'periodeNilaiControler@store') -> name ('periode-store');
-Route::get('periode/edit/{id}','periodeNilaiControler@update')-> name ('periode-edit');
-Route::post('/periode/update/{id}', 'periodeNilaiControler@update') -> name ('periode-update');
-Route::get('/periode/delete/{id}','periodeNilaiControler@delete') -> name ('periode-delete');
-Route::get('/periode/cari','periodeNilaiControler@cari') -> name ('periode-cari');
-Route::get('/periode/export','periodeNilaiControler@periodeexport') -> name ('periode-export');
+Route::get('/periode', 'periodeNilaiControler@index')->name('periode-awal');
+Route::get('/periode/tambah', 'periodeNilaiControler@tambah')->name('periode-tambah');
+Route::post('/periode/store', 'periodeNilaiControler@store')->name('periode-store');
+Route::get('periode/edit/{id}', 'periodeNilaiControler@update')->name('periode-edit');
+Route::post('/periode/update/{id}', 'periodeNilaiControler@update')->name('periode-update');
+Route::get('/periode/delete/{id}', 'periodeNilaiControler@delete')->name('periode-delete');
+Route::get('/periode/cari', 'periodeNilaiControler@cari')->name('periode-cari');
+Route::get('/periode/export', 'periodeNilaiControler@periodeexport')->name('periode-export');
 
 // periode2
-Route::get('/periode2', 'periodeNilaiControler@periode2') -> name ('periode-awal');
+Route::get('/periode2', 'periodeNilaiControler@periode2')->name('periode-awal');
 
 
 // wilayah
@@ -156,7 +168,8 @@ Route::get('/tb-wilayah_gettambah', 'ctrl_wilayah@getTambah')->name('getTambah')
 Route::post('/tb-wilayah/tambah', 'ctrl_wilayah@store')->name('dtwl-tambah');
 Route::post('/tb-wilayah/edit/{id} ', 'ctrl_wilayah@edit')->name('dtwl-edit');
 Route::get('/delete/{id}', 'ctrl_wilayah@delete')->name('dtwl-delete');
-Route::get('/tb-wilayah/export','ctrl_wilayah@wilayahexport') -> name ('periode-export');
+Route::get('/tb-wilayah/export', 'ctrl_wilayah@wilayahexport')->name('periode-export');
+Route::get('/autocomplete_wilayah', 'ctrl_wilayah@autocomplete');
 
 // Exsport 
 Route::get('/export', 'ExsportController@Index')->name('export');
@@ -216,7 +229,5 @@ Route::get('/Rangking_Pegawai_wilayah', 'Rangking_Pegawai_wilayah@GetRangkingPeg
 // Rakening Pegawai Upt
 Route::get('/Rangking_Pegawai_Upt', 'Rangking_Pegawai_Upt@GetRangkingPegawaiUpt')->name('Rangking_Pegawai_Upt');
 
-
-
-
-
+Route::get('/profile', 'profileController@index')->name('profile');
+Route::get('/Laporan_Penilaian', 'profileController@laporan')->name('laporan');

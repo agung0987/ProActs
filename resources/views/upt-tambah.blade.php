@@ -8,7 +8,7 @@
     <div class="container">
         <div class="d-flex justify-content-center">
                 <div class="card mt-2" style="width: 700px; padding:3rem;">
-                    <ol class="breadcrumb mb-4 justify-content-center bg-primary">
+                    <ol class="breadcrumb mb-4 justify-content-center bg-success">
                         <li class="breadcrumb-item active" style="color: white;">
                             <h2>Tambah Data UPT</h2>
                         </li>
@@ -50,7 +50,7 @@
                     </tr>
                     </table>
                   <div style="width: 100%;"> 
-                    <button type="submit" class="btn btn-primary" style="justify-content:right; float:right" id="tambah-upt">Simpan</button>
+                    <button type="submit" class="btn btn-success" style="justify-content:right; float:right" id="tambah-upt">Simpan</button>
                 </div>
                 </form>
             </div>

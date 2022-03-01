@@ -8,7 +8,7 @@
         <div class="container">
             <div class="d-flex justify-content-center">
                 <div class="card mt-2" style="width: 700px; padding:3rem; ">
-                    <ol class="breadcrumb mb-4 justify-content-center bg-primary">
+                    <ol class="breadcrumb mb-4 justify-content-center bg-success">
                         <li class="breadcrumb-item active" style="color: white;">
                             <h2>Pilih Pegawai</h2>
                         </li>
@@ -36,7 +36,7 @@
                         <div class="mb-3 row">
                             <label for="inputPegawaiDinilai" class="col-sm-2 col-form-label">Pegawai Dinilai</label>
                             <div class="col-sm-10" style="margin-top: 1rem;">
-                                <select class="nip form-control" name="nip"></select>
+                                <select class="nip form-control" name="nip" required></select>
                             </div>
                         </div>
                         <div class="mb-3 row" style="margin-top: 1rem;">
@@ -50,7 +50,7 @@
                                 </select>
                             </div>
                         </div>
-                        <button type="submit" class="btn btn-primary" style="justify-content:right; float:right"><b>Mulai</b></button>
+                        <button type="submit" class="btn btn-success" style="justify-content:right; float:right"><b>Mulai</b></button>
 
                         <!-- tutup form -->
                     </form>

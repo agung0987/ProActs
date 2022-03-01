@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\DB;
 class modelPenilaianProaktif extends Model
 {
     use HasFactory;
-    protected $table = 'penilaianProaktif';         //Nama Tabel
+    protected $table = 'penilaianproaktif';         //Nama Tabel
     protected $primaryKey = 'id';       //primary key
 
     protected $fillable =[   //Struktur tabel yang sifat (accesabble undfillable)

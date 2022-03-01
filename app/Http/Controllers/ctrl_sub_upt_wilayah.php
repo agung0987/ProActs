@@ -11,7 +11,7 @@ class ctrl_sub_upt_wilayah extends Controller
         $cari = array($request->caritahun, $request->caribulan, $request->cariupt, $request->cariwilayah,($request->limit-1)*10);
         // dd($cari);
 
-        $dtupt=DB::select('CALL upt_tampil()'); 
+        $dtupt=DB::select('CALL upt_tampill()'); 
         $datawil=DB::select('call wilayah_tampil()'); 
         if(empty($request->all())){
             $dataSupUptwil= DB::select('call sp_jml_sub_upt_wilayah(?,?,?,?,?)',['kosong', 0, 0, 0, 0]);

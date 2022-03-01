@@ -8,19 +8,33 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 
 class ctrl_user extends Controller
-{   
-     public function __construct()
+{
+    public function autocomplete(Request $request)
+    {
+
+        if ($request->has('q')) {
+            $search = $request->q;
+            $data = DB::select('call user_tampil(?)', [$search]);
+        }
+        return response()->json($data);
+    }
+
+    public function __construct()
     {
         $this->middleware('auth');
     }
 
-    public function user_tampil()
+    public function user_tampil(Request $request)
     {
-        // $cobacrud = DB::select('CALL indexpenilaianproaktif(?,?)', array(1, 6));
-        $datauser = DB::select('CALL user_tampil()');
+        $cari = array($request->nama);
+        if (empty($request->nama)) {
+            $data = DB::select('CALL user_tampil(?)', ['kosong']);
+        } else {
+            $data = DB::select('CALL user_tampil(?)', $cari);
+        };
         // dd($datauser);
-        $data=array(
-            'datauser'=>$datauser,
+        $data = array(
+            'datauser' => $data,
         );
 
         return view('user-tampil', $data);
@@ -35,7 +49,7 @@ class ctrl_user extends Controller
             'email' => $request->email,
             'hakAkses' => $request->hakAkses,
             'id_pegawai' => $request->id_pegawai,
-            
+
         ]);
         return redirect()->route('tb-user')->with('sukses', 'Data User Berhasil Diubah');
     }

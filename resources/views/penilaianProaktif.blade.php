@@ -18,7 +18,7 @@
           <div class="p-3 border bg-light">
             @foreach($dtpn as $getdtpn)
             <ul class="list-group">
-              <li class="list-group-item active" aria-current="true">Penilai</li>
+              <li class="list-group-item active bg-success" aria-current="true">Penilai</li>
               <li class="list-group-item"><b>NIP </b> &emsp;&emsp;&emsp;: {{$getdtpn->nip}}</li>
               <li class="list-group-item"><b> Nama </b>&emsp;&emsp;: {{$getdtpn->nama}}</li>
               <li class="list-group-item"><b> Jabatan </b>&emsp;: {{$getdtpn->jabatan}}</li>
@@ -33,14 +33,14 @@
         <div class="col-3 " style="margin-left: 10px;">
           <div class="p-3 border bg-light">
             @if($dtpg == null)
-            <li class="list-group-item active" aria-current="true">Pegawai</li>
+            <li class="list-group-item active bg-success" aria-current="true">Pegawai</li>
             <li class="list-group-item"><b>NIP </b> &emsp;&emsp;&emsp;: --</li>
             <li class="list-group-item"><b> Nama </b>&emsp;&emsp;: --</li>
             <li class="list-group-item"><b> Jabatan </b>&emsp;: --</li>
 
             @else
             @foreach($dtpg as $getdtpg)
-            <li class="list-group-item active" aria-current="true">Pegawai</li>
+            <li class="list-group-item active bg-success" aria-current="true">Pegawai</li>
             <li class="list-group-item"><b>NIP </b> &emsp;&emsp;&emsp;: {{$getdtpg->nip}}</li>
             <li class="list-group-item"><b> Nama </b>&emsp;&emsp;: {{$getdtpg->nama}}</li>
             <li class="list-group-item"><b> Jabatan </b>&emsp;: {{$getdtpg->jabatan}}</li>
@@ -89,7 +89,7 @@
 
                 <div class="col-sm-9">
                   <!-- <a href="http://127.0.0.1:8000/tambahPenilaian" data-toggle="modal" data-target="#myModal" class="btn btn-secondary"><i class="bi bi-file-earmark-plus"></i> <span style="padding-top: 4px;">Add New User</span></a> -->
-                  <a href="http://127.0.0.1:8000/penilaian-proaktif/cetak" class="btn btn-secondary"><i class="bi bi-file-pdf-fill"></i><span style="padding-top: 4px;">Export to PDF</span></a>
+                  <a href="http://127.0.0.1:8000/penilaian-proaktif/cetak" class="btn btn-success"><i class="bi bi-file-pdf-fill"></i><span style="padding-top: 4px;">Export to PDF</span></a>
 
 
                 </div>

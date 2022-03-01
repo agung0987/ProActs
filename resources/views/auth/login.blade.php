@@ -4,7 +4,7 @@
 
 
 <!-- form login -->
-<section id="login text-center" style="background-image: url('img/bg.png') ; background-repeat:no-repeat; background-size:100%; height:100vh;">
+<section id="login text-center" style="background-image: url('img/bg2.png') ; background-repeat:no-repeat; background-size:100%; height:100vh;">
 
     <div class="container">
         <div style="margin-top:5rem">

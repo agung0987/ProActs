@@ -1,126 +1,622 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-        <meta name="description" content="" />
-        <meta name="author" content="" />
-        <script src="{{ asset('js/app.js') }}" defer></script>
-        <!-- CSRF Token -->
-        <meta name="csrf-token" content="{{ csrf_token() }}">
-        <title>Telemedicine</title>
-        <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
-        <link href="{{ url('backend/css/styles.css')}}" rel="stylesheet" />
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js" crossorigin="anonymous"></script>
-        @livewireStyles
-    </head>
-    <body class="sb-nav-fixed">
-        <nav class="sb-topnav navbar navbar-expand navbar-dark bg-primary">
-            <!-- Navbar Brand-->
-            <a class="navbar-brand ps-3" href="{{ url('/') }}">Telemedicine</a>
-            <!-- Sidebar Toggle-->
-            <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i class="fas fa-bars"></i></button>
-            <form class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
-            </form>
-            <!-- Navbar-->
-            <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
-                <li class="nav-item dropdown" >
-                <ul class="navbar-nav ms-auto py-4 py-lg-0">
-                    @guest
-                            @if (Route::has('register'))
-                                <li class="nav-item">
-                                    <a class="nav-link text-dark" href="{{ route('register') }}">{{ __('Register') }}</a>
-                                </li>
-                            @endif
-                        @else
-                            <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre><i class="fas fa-user fa-fw"></i>
-                                </a>
 
-                                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
-                                    </a>
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <meta name="description" content="" />
+  <meta name="author" content="" />
+  <script src="{{ asset('js/app.js') }}" defer></script>
+  <!-- CSRF Token -->
+  <meta name="csrf-token" content="{{ csrf_token() }}">
+  <title>KEMENKUMHAM</title>
+  <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
+  <link href="{{ url('backend/css/styles.css')}}" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                        @csrf
-                                    </form>
-                                </div>
-                            </li>
-                    @endguest
-                    </ul>
-                </li>
-            </ul>
-        </nav>
-        <div id="layoutSidenav">
-            <div id="layoutSidenav_nav">
-                <nav class="sb-sidenav accordion sb-sidenav-primary" id="sidenavAccordion">
-                    <div class="sb-sidenav-menu">
-                        <div class="nav">
-                            <div class="sb-sidenav-menu-heading">Menu</div>
-                            <a class="nav-link" href="{{ url('/admin') }}">
-                                <div class="sb-nav-link-icon"><i class="fas fa-home"></i></div>
-                                Halaman Utama
-                            </a>
-                            <a class="nav-link" href="{{ url('/profil') }}">
-                                <div class="sb-nav-link-icon"><i class="fas fa-user-circle"></i></div>
-                                Profil
-                            </a>
-                            <div class="sb-sidenav-menu-heading">Cek Kondisi</div>
-                            <a class="nav-link" href="{{ url('/test') }}">
-                                <div class="sb-nav-link-icon"><i class="fas fa-stethoscope"></i></div>
-                                Lakukan Tes
-                            </a>
-                            <div class="sb-sidenav-menu-heading">Fitur Lainnya</div>
-                            <a class="nav-link" href="https://www.cnnindonesia.com/search/?query=Covid">
-                                <div class="sb-nav-link-icon"><i class="fas fa-newspaper"></i></div>
-                                Artikel
-                            </a>
-                            <a class="nav-link" href="{{ url('/rujukan') }}">
-                                <div class="sb-nav-link-icon"><i class="fas fa-address-book"></i></div>
-                                Nomor Darurat
-                            </a>
-                        </div>
-                    </div>
-                    <div class="sb-sidenav-footer">
-                        <div class="small">Logged in as:</div>
-                        {{ Auth::user()->name }}  saya adalah user
-                        <div>
-                        <a class="btn text-dark" href="{{ route('logout') }}"
-                            onclick="event.preventDefault();
-                            document.getElementById('logout-form').submit();">
-                            {{ __('Logout') }}
-                        </a>
-                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                        @csrf
-                        </form>
-                        </div>
-                        
-                    </div>
-                </nav>
+  <!-- sweetalert -->
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  <!-- jquery cdn -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+  <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <!-- cdn toastr -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js" integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script type="text/javascript" src="js/jquery.js"></script>
+  <script type="text/javascript" src="js/bootstrap.js"></script>
+
+
+
+  <!-- autocomplete -->
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.0-alpha1/css/bootstrap.min.css">
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css" rel="stylesheet" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
+
+
+  <!-- chart -->
+  <script src="js/highcharts.js"></script>
+  <script src="https://code.highcharts.com/highcharts-more.js"></script>
+  <title>High Chart</title>
+  <!-- @livewireStyles -->
+
+  <!-- paginate
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script> -->
+</head>
+
+<body class="sb-nav-fixed">
+  <nav class="sb-topnav navbar navbar-expand navbar-dark shadow bg-primary">
+    <!-- Navbar Brand-->
+    <a class="navbar-brand ps-3" href="{{ url('/home') }}"><img src="{{asset('img/log.png')}}" style="width: 3rem; height:2.5rem;"><b>KEMENKUMHAM</b></a>
+    <!-- Sidebar Toggle-->
+    <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i class="fas fa-bars"></i></button>
+    <form class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
+    </form>
+    <!-- Navbar-->
+    <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
+      <li class="nav-item dropdown">
+        <ul class="navbar-nav ms-auto py-4 py-lg-0">
+          @guest
+          @if (Route::has('register'))
+          <li class="nav-item">
+            <a class="nav-link text-dark" href="{{ route('registrasi') }}">{{ __('Register') }}</a>
+          </li>
+          @endif
+          @else
+
+
+          <!-- Logout -->
+          <div class="btn-group me-3">
+            <div style="margin-top:8px;  color:white;">
+              <h4>{{Auth::user()->name}}</h5>
             </div>
+            <button type="button" class="btn dropdown-toggle" style="color:#fff;" data-bs-toggle="dropdown" aria-expanded="false">
+              <i class="fas fa-user fa-fw"></i>
+            </button>
+            <ul class="dropdown-menu dropdown-menu-end">
+              <li>
+                <a class="p-1 pl-3 nav-link" id="logout" href="{{ route('logout') }}">
+                  <h6 style="color:black">Logout</h6>
+                  <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                    @csrf
+                  </form>
+                </a>
+              </li>
+            </ul>
+          </div>
+          <!-- tutup Logout -->
+          @endguest
+        </ul>
+      </li>
+    </ul>
+  </nav>
+  <div id="layoutSidenav">
+    <div id="layoutSidenav_nav">
+      <nav class="sb-sidenav accordion sb-sidenav" id="sidenavAccordion">
+        <div class="sb-sidenav-menu">
+          <div class="nav ">
+            <br>
+            <a class="p-1 pl-3 nav-link" style="color:#fff" href="{{route('home2')}}">
+              <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+              Dashboard
+            </a>
+            <br>
+            <div class="p-1 pl-3 sb-sidenav-menu-heading">
+              <h5>Master Data</h5>
+            </div>
+            <a class="p-1 pl-3  nav-link {{ Request::is('tb-pegawai') ? 'active' : ''}} " style="color:#fff" href="/profile">
+              <div class="sb-nav-link-icon"><i class="bi bi-person-bounding-box"></i></div>
+              Profil
+            </a>
+            
+
+            <div class="sb-sidenav-menu-heading">
+              <h5>Penilaian</h5>
+            </div>
+            <a class="p-1 pl-3 nav-link {{ Request::is('periodePenilaian-pilih','pegawai-pilih','penilaian') ? 'active' : ''}}" style="color:#fff" href="{{ url('/periodePenilaian-pilih') }}">
+              <div class="sb-nav-link-icon">
+                <i class="bi bi-journal-check"></i>
+              </div>
+              Penilaian X-Role
+
+            </a>
+            
+
+            <!-- <a class="p-1 pl-3 nav-link {{ Request::is('chart') ? 'active' : ''}}" style="color:#fff" href="{{ url('/chart') }}">
+                            <div class="sb-nav-link-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-graph-up-arrow" viewBox="0 0 16 16">
+                                    <path fill-rule="evenodd" d="M0 0h1v15h15v1H0V0Zm10 3.5a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 .5.5v4a.5.5 0 0 1-1 0V4.9l-3.613 4.417a.5.5 0 0 1-.74.037L7.06 6.767l-3.656 5.027a.5.5 0 0 1-.808-.588l4-5.5a.5.5 0 0 1 .758-.06l2.609 2.61L13.445 4H10.5a.5.5 0 0 1-.5-.5Z" />
+                                </svg>
+                            </div>
+                            Grafik
+                        </a> -->
+
+            <!-- Laporan -->
+            <div class="sb-sidenav-menu-heading">
+              <h5>Laporan</h5>
+            </div>
+
+            <a class="p-1 pl-3 nav-link {{ Request::is('lap_per_pegawai') ? 'active' : ''}}" style="color:#fff" href="/Laporan_Penilaian">
+              <div class="sb-nav-link-icon">
+                <i class="bi bi-clipboard-data"></i>
+              </div>
+              Laporan Penilaian
+
+            <br>
+            <a class="p-1 pl-3 nav-link" style="color:#fff; margin-top:5em" href="{{ route('logout') }}" id="logout">
+              <div class="sb-nav-link-icon">
+                <i class="bi bi-box-arrow-right"></i>
+              </div>
+              Logout
+
+            </a>
+            <br><br><br>
+          </div>
         </div>
-            <main>
-            @yield('content')
-            </main>
-            <footer class="py-3 bg-light mt-4">
-                    <div class="container-fluid px-4">
-                    <div class="d-flex align-items-center justify-content-between small">
-                    <div class="text ml-5">Copyright &copy; Telemedicine 2021</div>
+        <!-- <div class="sb-sidenav-footer" style="color:#fff">
+                    <div class="small" style="color:#fff">Logged in as:</div>
+                    {{ Auth::user()->name }}
+                </div> -->
+      </nav>
+    </div>
+  </div>
+  <main>
+    @yield('content')
+  </main>
+  <!-- <footer class="py-3 bg-light mt-5">
+        <div class="container-fluid px-4">
+            <div class="d-flex align-items-center justify-content-center small">
+                <div class="text ml-5"><b>Copyright &copy; KEMENKUMHAM 2021</b> </div>
 
-        </footer> 
-           
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
-        <script src="{{ asset('backend/js/scripts.js')}}"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
-        <script src="{{ asset('backend/assets/demo/chart-area-demo.js')}}"></script>
-        <script src="{{ asset('backend/assets/demo/chart-bar-demo.js')}}"></script>
-        <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
-        <script src="{{ asset('backend/js/datatables-simple-demo.js')}}"></script>
-        @livewireScripts
-    </body>
+    </footer> -->
+
+
+
+
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+  <script src="{{ asset('backend/js/scripts.js')}}"></script>
+  <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script> -->
+  <!-- <script src="{{ asset('backend/assets/demo/chart-area-demo.js')}}"></script>
+    <script src="{{ asset('backend/assets/demo/chart-bar-demo.js')}}"></script> -->
+  <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
+  <script src="{{ asset('backend/js/datatables-simple-demo.js')}}"></script>
+</body>
+
+
+
+
+
+
+
+<script>
+  @if(Session::has('sukses'))
+  Swal.fire({
+    position: 'center',
+    icon: 'success',
+    title: "{{ session::get('sukses') }}",
+    showConfirmButton: false,
+    timer: 1500
+  })
+  @endif
+</script>
+
+<!-- delete pegawai -->
+<script>
+  $('.delete_pegawai').click(function() {
+    var pegawaiId = $(this).attr('data-id')
+    Swal.fire({
+      title: 'Hapus',
+      text: "Apakah Kamu Yakin Ingin Menghapus Data Tersebut ?",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Hapus',
+      cancelButtonText: 'Kembali'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        window.location = "/del/" + pegawaiId + ""
+        // Swal.fire(
+        //   'Hapus!',
+        //   'Data Berhasil Dihapus!',
+        //   'success'
+        // )
+      }
+    });
+  });
+</script>
+<!-- akhir delete pegawai -->
+
+<!-- tambah pegawai  -->
+<script>
+  $(document).on('click', '#tambah-pegawai', function(e) {
+    e.preventDefault();
+    Swal.fire({
+      title: 'Tambah data ',
+      text: "Apakah Kamu Yakin Ingin Menambah Data ?",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Iya',
+      cancelButtonText: 'Tidak'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        $('#myForm-tambah-pegawai').submit();
+      }
+    });
+  });
+</script>
+<!-- akhir tambah pegawai  -->
+
+<!-- delete jabatan -->
+<script>
+  $('.delete_jabatan').click(function() {
+    var jabatanId = $(this).attr('data-id')
+    Swal.fire({
+      title: 'Hapus',
+      text: "Apakah Kamu Yakin Ingin Menghapus Data Tersebut ?",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Hapus',
+      cancelButtonText: 'Kembali'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        window.location = "/tb-jabatan/delete/" + jabatanId + ""
+        // Swal.fire(
+        //   'Hapus!',
+        //   'Data Berhasil Dihapus!',
+        //   'success'
+        // )
+      }
+    });
+  });
+</script>
+<!-- akhir delete jabatan -->
+
+
+
+<!-- tambah jabatan  -->
+<script>
+  $(document).on('click', '#tambah-jabatan', function(e) {
+    e.preventDefault();
+    Swal.fire({
+      title: 'Tambah data ',
+      text: "Apakah Kamu Yakin Ingin Menambah Data ?",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Iya',
+      cancelButtonText: 'Tidak'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        $('#myForm-tambah-jabatan').submit();
+      }
+    });
+  });
+</script>
+<!-- akhir tambah jabatan  -->
+
+<!-- delete wilayah -->
+<script>
+  $('.delete_wilayah').click(function() {
+    var wilayahId = $(this).attr('data-id')
+    Swal.fire({
+      title: 'Hapus',
+      text: "Apakah Kamu Yakin Ingin Menghapus Data Tersebut ?",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Hapus',
+      cancelButtonText: 'Kembali'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        window.location = "/delete/" + wilayahId + ""
+        // Swal.fire(
+        //   'Hapus!',
+        //   'Data Berhasil Dihapus!',
+        //   'success'
+        // )
+      }
+    });
+  });
+</script>
+<!-- akhir delete wilayah -->
+
+<!-- tambah wilayah  -->
+<script>
+  $(document).on('click', '#tambah-wilayah', function(e) {
+    e.preventDefault();
+    Swal.fire({
+      title: 'Tambah data ',
+      text: "Apakah Kamu Yakin Ingin Menambah Data ?",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Iya',
+      cancelButtonText: 'Tidak'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        $('#myForm-tambah-wilayah').submit();
+      }
+    });
+  });
+</script>
+<!-- akhir tambah wilayah  -->
+
+<!-- delete upt -->
+<script>
+  $('.delete_upt').click(function() {
+    var uptId = $(this).attr('data-id')
+    Swal.fire({
+      title: 'Hapus',
+      text: "Apakah Kamu Yakin Ingin Menghapus Data Tersebut ?",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Hapus',
+      cancelButtonText: 'Kembali'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        window.location = "/tb-upt/delete/" + uptId + ""
+        // Swal.fire(
+        //   'Hapus!',
+        //   'Data Berhasil Dihapus!',
+        //   'success'
+        // )
+      }
+    });
+  });
+</script>
+<!-- akhir delete upt -->
+
+<!-- tambah upt  -->
+<script>
+  $(document).on('click', '#tambah-upt', function(e) {
+    e.preventDefault();
+    Swal.fire({
+      title: 'Tambah data ',
+      text: "Apakah Kamu Yakin Ingin Menambah Data ?",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Iya',
+      cancelButtonText: 'Tidak'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        $('#myForm-tambah-upt').submit();
+      }
+    });
+  });
+</script>
+<!-- akhir tambah upt  -->
+
+<!-- delete kategori -->
+<script>
+  $('.delete_kategori').click(function() {
+    var kategoriId = $(this).attr('data-id')
+    Swal.fire({
+      title: 'Hapus',
+      text: "Apakah Kamu Yakin Ingin Menghapus Data Tersebut ?",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Hapus',
+      cancelButtonText: 'Kembali'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        window.location = "/kategori-delete/" + kategoriId + ""
+        // Swal.fire(
+        //   'Hapus!',
+        //   'Data Berhasil Dihapus!',
+        //   'success'
+        // )
+      }
+    });
+  });
+</script>
+<!-- akhir delete kategori -->
+
+<!-- tambah kategori  -->
+<script>
+  $(document).on('click', '#tambah-kategori', function(e) {
+    e.preventDefault();
+    Swal.fire({
+      title: 'Tambah data ',
+      text: "Apakah Kamu Yakin Ingin Menambah Data ?",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Iya',
+      cancelButtonText: 'Tidak'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        $('#myForm-tambah-kategori').submit();
+      }
+    });
+  });
+</script>
+<!-- akhir tambah kategori  -->
+
+<!-- delete kuesioner -->
+<script>
+  $('.delete_kuesioner').click(function() {
+    var kuesionerId = $(this).attr('data-id')
+    Swal.fire({
+      title: 'Hapus',
+      text: "Apakah Kamu Yakin Ingin Menghapus Data Tersebut ?",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Hapus',
+      cancelButtonText: 'Kembali'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        window.location = "/kuesioner/delete/" + kuesionerId + ""
+        // Swal.fire(
+        //   'Hapus!',
+        //   'Data Berhasil Dihapus!',
+        //   'success'
+        // )
+      }
+    });
+  });
+</script>
+<!-- akhir delete kuesioner -->
+
+<!-- tambah kuesioner  -->
+<script>
+  $(document).on('click', '#tambah-kuesioner', function(e) {
+    e.preventDefault();
+    Swal.fire({
+      title: 'Tambah data ',
+      text: "Apakah Kamu Yakin Ingin Menambah Data ?",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Iya',
+      cancelButtonText: 'Tidak'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        $('#myForm-tambah-kuesioner').submit();
+      }
+    });
+  });
+</script>
+<!-- akhir tambah kuesioner  -->
+
+<!-- delete periode -->
+<script>
+  $('.delete_periode').click(function() {
+    var periodeId = $(this).attr('data-id')
+    Swal.fire({
+      title: 'Hapus',
+      text: "Apakah Kamu Yakin Ingin Menghapus Data Tersebut ?",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Hapus',
+      cancelButtonText: 'Kembali'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        window.location = "/periode/delete/" + periodeId + ""
+        // Swal.fire(
+        //   'Hapus!',
+        //   'Data Berhasil Dihapus!',
+        //   'success'
+        // )
+      }
+    });
+  });
+</script>
+<!-- akhir delete periode -->
+
+
+<!-- tambah periode  -->
+<script>
+  $(document).on('click', '#tambah-periode', function(e) {
+    e.preventDefault();
+    Swal.fire({
+      title: 'Tambah data ',
+      text: "Apakah Kamu Yakin Ingin Menambah Data ?",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Iya',
+      cancelButtonText: 'Tidak'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        $('#myForm-tambah-periode').submit();
+      }
+    });
+  });
+</script>
+<!-- akhir tambah periode  -->
+
+<!-- delete user -->
+<script>
+  $('.delete_user').click(function() {
+    var userId = $(this).attr('data-id')
+    Swal.fire({
+      title: 'Hapus',
+      text: "Apakah Kamu Yakin Ingin Menghapus Data Tersebut ?",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Hapus',
+      cancelButtonText: 'Kembali'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        window.location = "/tb-user/delete/" + userId + ""
+        // Swal.fire(
+        //   'Hapus!',
+        //   'Data Berhasil Dihapus!',
+        //   'success'
+        // )
+      }
+    });
+  });
+</script>
+<!-- akhir delete user -->
+
+<!-- proses akhir periode  -->
+<script>
+  $(document).on('click', '#Proses', function(e) {
+    e.preventDefault();
+    Swal.fire({
+      title: 'Proses ',
+      text: "Apakah Anda Yakin Menjalankan Proses Akhir Periode Penilaian ?",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Iya',
+      cancelButtonText: 'Tidak'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        $('#myForm-proses').submit();
+      }
+    });
+  });
+</script>
+
+<!-- logout  -->
+<script>
+  $(document).on('click', '#logout', function(e) {
+    e.preventDefault();
+    Swal.fire({
+      title: 'Proses ',
+      text: "Apakah Anda Yakin ingin Logout ?",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Iya',
+      cancelButtonText: 'Tidak'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        $('#logout-form').submit();
+      }
+    });
+  });
+</script>
+
 </html>
-

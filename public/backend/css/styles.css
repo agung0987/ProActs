@@ -11956,7 +11956,7 @@ body {
 }
 .sb-sidenav .sb-sidenav-menu {
     flex-grow: 1;
-    background-color: #2f4c94;
+    background-color: rgb(17, 79, 0);
     color: #fff;
 }
 .sb-sidenav .sb-sidenav-menu .nav {
@@ -12269,7 +12269,7 @@ body {
 }
 /* #299be4 */
 .backgroud-thead {
-    background-color: #0d6efd;
+    background-color: rgb(36, 156, 0);
     color : #fff;
 }
 
@@ -12282,7 +12282,7 @@ body {
     color: #fff;
     float: right;
     font-size: 13px;
-    background: #0d6efd;
+    /* background: #0d6efd; */
     border: none;
     min-width: 50px;
     border-radius: 2px;
@@ -12494,4 +12494,7 @@ table.table .avatar {
     border-radius: 2px !important;
     text-align: center;
     padding: 0 6px;
+}
+.bgnavbar{
+    background-color: rgb(36, 156, 0);
 }

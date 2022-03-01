@@ -6,7 +6,7 @@
         <div class="container">
             <div class="d-flex justify-content-center">
                 <div class="card mt-2" style="width: 700px; padding:3rem; ">
-                    <ol class="breadcrumb mb-4 justify-content-center bg-primary">
+                    <ol class="breadcrumb mb-4 justify-content-center bg-success">
                         <li class="breadcrumb-item active" style="color: white;">
                             <h4>Tambah Kuesioner</h4>
                         </li>
@@ -50,7 +50,7 @@
                                 </select>
                             </div>
                         </div>
-                        <button type="submit" class="btn btn-primary" id="tambah-kuesioner" style="justify-content:right; float:right"><b>Simpan</b></button>
+                        <button type="submit" class="btn btn-success" id="tambah-kuesioner" style="justify-content:right; float:right"><b>Simpan</b></button>
 
                         <!-- tutup form -->
                     </form>

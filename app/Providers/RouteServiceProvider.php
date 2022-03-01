@@ -5,11 +5,16 @@ namespace App\Providers;
 use Illuminate\Cache\RateLimiting\Limit;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\Facades\Route;
+use phpDocumentor\Reflection\Types\This;
 
 class RouteServiceProvider extends ServiceProvider
 {
+    // public function getRole(){
+    //     return (Auth::user()->hakAkses == 1 ? '/home' : '/tb-pegawai');
+    // }
     /**
      * The path to the "home" route for your application.
      *
@@ -17,7 +22,10 @@ class RouteServiceProvider extends ServiceProvider
      *
      * @var string
      */
-    public const HOME = '/home';
+        
+    public const HOME = '/check' ;
+    
+    
 
     /**
      * The controller namespace for the application.
@@ -26,7 +34,7 @@ class RouteServiceProvider extends ServiceProvider
      *
      * @var string|null
      */
-     protected $namespace = 'App\\Http\\Controllers';
+    protected $namespace = 'App\\Http\\Controllers';
 
     /**
      * Define your route model bindings, pattern filters, etc.

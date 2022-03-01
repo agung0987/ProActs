@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
@@ -16,6 +17,26 @@ class HomeController extends Controller
     {
         $this->middleware('auth');
     }
+
+    public function check()
+    {
+        // $getRole = 
+        // // dd($getRole);
+        return redirect()->route((Auth::user()->hakAkses == 1 ? 'home' : 'home2'));
+    }
+
+    public function user(){
+        $data = DB::select('call sp_home_user(?)', [(Auth::user()->id_pegawai)]);
+        // dd($data);
+        // dd($data);
+        // $data = $data[0];
+        
+        return view('home_user', [
+            'data'=>$data
+        ]);
+    }
+
+
 
     /**
      * Show the application dashboard.
@@ -81,7 +102,8 @@ class HomeController extends Controller
         //==========================================================================================================================
 	$pegawai = DB::select('call sp_tb_lap_master_penilaian_pegawai_wilayah2(?,?,?)',[0,'', 5]);
         $data=DB::select('call dashboard');
-        // dd($pegawai);
+        
+        // dd($data);
         return view('home',[
             'str_gender'=>$str_gender,
             'str_pnd'=>$str_pnd,
